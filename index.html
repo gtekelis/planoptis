@@ -19,6 +19,8 @@
     --warn: #b7791f;
     --next: #5b53c8;
     --heading: #111;
+    --shot-a: #93bb9a;
+    --shot-b: #6f93b2;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -33,6 +35,8 @@
       --warn: #e0b061;
       --next: #a7a1ee;
       --heading: #f2f2ef;
+      --shot-a: #2f4b37;
+      --shot-b: #2a3f58;
     }
   }
   * { box-sizing: border-box; }
@@ -122,6 +126,49 @@
     color: var(--muted); font-size: 14px;
   }
   footer a { color: var(--muted); }
+
+  /* code screenshot — macOS-style editor window */
+  figure.shot {
+    margin: 4px 0;
+    padding: clamp(16px, 5vw, 40px);
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--shot-a), var(--shot-b));
+  }
+  figure.shot figcaption {
+    margin-top: 14px; text-align: center;
+    color: rgba(255, 255, 255, 0.9); font-size: 13px;
+  }
+  .shot-window {
+    border-radius: 11px; overflow: hidden;
+    box-shadow: 0 24px 55px -14px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.07);
+  }
+  .shot-bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 15px; background: #292a2f;
+  }
+  .shot-bar i { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+  .shot-bar i:nth-child(1) { background: #ff5f57; }
+  .shot-bar i:nth-child(2) { background: #febc2e; }
+  .shot-bar i:nth-child(3) { background: #28c840; }
+  .shot-bar b {
+    margin-left: 10px; font-weight: 400; font-size: 12px; color: #8b8d93;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  .shot-window pre {
+    margin: 0; padding: 20px 22px; overflow-x: auto;
+    background: #1e1f22; color: #c9cbd1;
+    font: 12.5px/1.7 ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    tab-size: 2; -moz-tab-size: 2;
+  }
+  .shot-window .h    { color: #edeef1; font-weight: 700; }
+  .shot-window .sep  { color: #3c3e45; }
+  .shot-window .date { color: #8aa9ff; }
+  .shot-window .lbl  { color: #edeef1; font-weight: 600; }
+  .shot-window .done { color: #7bc47f; }
+  .shot-window .warn { color: #e0b061; }
+  .shot-window .urg  { color: #e57368; font-weight: 600; }
+  .shot-window .nxt  { color: #a7a1ee; }
+  .shot-window .note { color: #7f8188; }
 </style>
 </head>
 <body>
@@ -146,6 +193,36 @@
     </div>
   </div>
 
+  <figure class="shot">
+    <div class="shot-window">
+      <div class="shot-bar"><i></i><i></i><i></i><b>planoptis-demo-en.txt</b></div>
+      <pre><span class="h">🗓️ SEPTEMBER</span>
+<span class="sep">=======================================================</span>
+
+	<span class="date">Tuesday 01-09-2026</span>
+	<span class="sep">=============================================</span>
+
+		<span class="lbl">Website</span>
+		<span class="sep">-----------------------------------------</span>
+		<span class="done">- ✅ Create repository</span>
+		<span class="done">- ✅ Build the basic homepage structure</span>
+		- Responsive menu
+		- Contact form
+			<span class="note">| Validate before submit</span>
+			<span class="note">| Show a confirmation message</span>
+		<span class="warn">- ⚠️ Check mobile layout</span>
+
+		<span class="lbl">Infrastructure</span>
+		<span class="sep">-----------------------------------------</span>
+		<span class="urg">- 🆘 Check available disk space</span>
+		- Upgrade packages
+		- Restart services
+			<span class="note">| Check logs after restart</span>
+</pre>
+    </div>
+    <figcaption>A day in a Planoptis plan — folded and highlighted in Sublime Text.</figcaption>
+  </figure>
+
   <section>
     <h2>Why plain text</h2>
     <ul class="reasons">
@@ -163,21 +240,10 @@
       <strong>plan</strong>, and a <strong>daily log</strong> grouped by client or topic.
       Indent with tabs. Every task is a <code>-</code> line; a marker sits right after the dash.
     </p>
-    <pre class="plan"><span class="h">🗓️ SEPTEMBER</span>
-<span class="sep">=======================================================</span>
-
-	<span class="date">Tuesday 01-09-2026</span>
-	<span class="sep">=============================================</span>
-
-		<span class="lbl">Website</span>
-		<span class="sep">-----------------------------------------</span>
-		<span class="done">- ✅ Create repository</span>
-		- Responsive menu
-		- Contact form
-			<span class="note">| Validate before submit</span>
-		<span class="warn">- ⚠️ Check mobile layout</span>
-		<span class="urg">- 🆘 Renew SSL certificate</span>
-		<span class="nxt">- ⏭️ Prepare demo</span></pre>
+    <p>
+      Collapse a section to skim, expand it to work. The screenshot above is one day;
+      the same file also holds the month-by-month plan and the standing project list.
+    </p>
   </section>
 
   <section>

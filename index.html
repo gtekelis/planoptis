@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planoptis — a plain-text planning format</title>
+<meta name="description" content="Planoptis is a plain-text planning format: one file, folded by indentation, that keeps your whole plan visible at all times. Free, MIT licensed, with a Sublime Text syntax.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AF%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #fdfdfb;
+    --surface: #f4f4ef;
+    --text: #1b1b19;
+    --muted: #6c6c66;
+    --border: #e4e4dd;
+    --accent: #2e7d32;
+    --accent-text: #1f5c23;
+    --urgent: #c0392b;
+    --warn: #b7791f;
+    --next: #5b53c8;
+    --heading: #111;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1b1e;
+      --surface: #232429;
+      --text: #e8e8e4;
+      --muted: #9b9b95;
+      --border: #2f3036;
+      --accent: #7bc47f;
+      --accent-text: #8fd393;
+      --urgent: #e57368;
+      --warn: #e0b061;
+      --next: #a7a1ee;
+      --heading: #f2f2ef;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--accent-text); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { text-decoration-color: var(--accent); }
+
+  header.site {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 0; font-weight: 600; letter-spacing: .02em;
+  }
+  header.site .mark { font-size: 15px; text-transform: uppercase; letter-spacing: .14em; }
+  header.site a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 15px; }
+  header.site a:hover { color: var(--text); }
+
+  .hero { padding: 40px 0 8px; border-top: 1px solid var(--border); }
+  h1 {
+    font: 700 clamp(40px, 9vw, 64px)/1.05 ui-serif, Georgia, Cambria, "Times New Roman", serif;
+    color: var(--heading); margin: 0 0 .35em; letter-spacing: -.02em;
+  }
+  .tagline { font-size: clamp(19px, 3.5vw, 23px); margin: 0 0 1em; color: var(--text); }
+  .etymology { color: var(--muted); margin: 0 0 1.8em; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px; }
+  .btn {
+    display: inline-block; padding: 10px 18px; border-radius: 8px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+  }
+  .btn.primary { background: var(--accent); color: #fff; }
+  @media (prefers-color-scheme: dark) { .btn.primary { color: #14210f; } }
+  .btn.ghost { border: 1px solid var(--border); color: var(--text); }
+  .btn.ghost:hover { border-color: var(--muted); }
+
+  section { padding: 40px 0; border-top: 1px solid var(--border); }
+  h2 {
+    font-size: 14px; text-transform: uppercase; letter-spacing: .12em;
+    color: var(--muted); margin: 0 0 1.1em; font-weight: 700;
+  }
+  p { margin: 0 0 1em; }
+  ul.reasons { margin: 0; padding: 0; list-style: none; }
+  ul.reasons li { padding: 6px 0 6px 26px; position: relative; }
+  ul.reasons li::before {
+    content: "—"; position: absolute; left: 0; color: var(--accent-text);
+  }
+
+  pre.plan {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px 20px; overflow-x: auto; margin: 0 0 1em;
+    font: 13.5px/1.7 ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    tab-size: 2; -moz-tab-size: 2;
+  }
+  pre.plan .h   { color: var(--heading); font-weight: 700; }
+  pre.plan .sep { color: var(--border); }
+  pre.plan .date{ color: var(--next); }
+  pre.plan .lbl { color: var(--text); font-weight: 600; }
+  pre.plan .done{ color: var(--accent-text); }
+  pre.plan .warn{ color: var(--warn); }
+  pre.plan .urg { color: var(--urgent); font-weight: 600; }
+  pre.plan .nxt { color: var(--next); }
+  pre.plan .note{ color: var(--muted); }
+
+  table { border-collapse: collapse; width: 100%; font-size: 15px; margin: 0 0 1em; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+  td code {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
+    padding: 1px 6px; font-size: 13px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    white-space: nowrap;
+  }
+  td.m { font-size: 18px; white-space: nowrap; }
+
+  ul.get { margin: 0; padding-left: 0; list-style: none; }
+  ul.get li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+  ul.get li:last-child { border-bottom: 0; }
+  ul.get .lang { color: var(--muted); }
+
+  footer {
+    padding: 32px 0 56px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 14px;
+  }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <span class="mark">Planoptis</span>
+    <a href="https://github.com/gtekelis/planoptis">GitHub ↗</a>
+  </header>
+
+  <div class="hero">
+    <h1>Planoptis</h1>
+    <p class="tagline">A plain-text planning format for people who want a bullet journal without an app.</p>
+    <p class="etymology">
+      Inspired by the Greek word <em>panoptis</em> — one who sees everything.
+      Replace <em>pan</em> with <em>plan</em>, and you get a system built around one
+      idea: keeping your whole plan visible at all times.
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/gtekelis/planoptis">Get Planoptis</a>
+      <a class="btn ghost" href="#format">See the format</a>
+    </div>
+  </div>
+
+  <section>
+    <h2>Why plain text</h2>
+    <ul class="reasons">
+      <li>One <code>.txt</code> file — greppable forever, no database, no lock-in</li>
+      <li>Syncs anywhere, opens in any editor, outlives every app that gets discontinued</li>
+      <li>Folds by indentation: collapse a month to see the year, expand a day to see the work</li>
+      <li>A syntax file for Sublime Text colours the markers; other editors still fold by indent</li>
+    </ul>
+  </section>
+
+  <section id="format">
+    <h2>The format</h2>
+    <p>
+      One file, three sections: standing <strong>projects</strong>, a month-by-month
+      <strong>plan</strong>, and a <strong>daily log</strong> grouped by client or topic.
+      Indent with tabs. Every task is a <code>-</code> line; a marker sits right after the dash.
+    </p>
+    <pre class="plan"><span class="h">🗓️ SEPTEMBER</span>
+<span class="sep">=======================================================</span>
+
+	<span class="date">Tuesday 01-09-2026</span>
+	<span class="sep">=============================================</span>
+
+		<span class="lbl">Website</span>
+		<span class="sep">-----------------------------------------</span>
+		<span class="done">- ✅ Create repository</span>
+		- Responsive menu
+		- Contact form
+			<span class="note">| Validate before submit</span>
+		<span class="warn">- ⚠️ Check mobile layout</span>
+		<span class="urg">- 🆘 Renew SSL certificate</span>
+		<span class="nxt">- ⏭️ Prepare demo</span></pre>
+  </section>
+
+  <section>
+    <h2>Marker vocabulary</h2>
+    <p>Markers always come immediately after the <code>-</code>, one per line.</p>
+    <table>
+      <thead>
+        <tr><th>Marker</th><th>Line</th><th>Means</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="m">—</td><td><code>- Responsive menu</code></td><td>Open task</td></tr>
+        <tr><td class="m">✅</td><td><code>- ✅ Create repository</code></td><td>Done</td></tr>
+        <tr><td class="m">🆘</td><td><code>- 🆘 Renew SSL certificate</code></td><td>Urgent / blocking</td></tr>
+        <tr><td class="m">⚠️</td><td><code>- ⚠️ Check mobile layout</code></td><td>Watch / risk / needs verifying</td></tr>
+        <tr><td class="m">⏭️</td><td><code>- ⏭️ Prepare demo</code></td><td>Deferred — do next / carried forward</td></tr>
+        <tr><td class="m">➡️</td><td><code>- ➡️ Send figures to Maria</code></td><td>Handed off / delegated</td></tr>
+        <tr><td class="m">|</td><td><code>| Validate before submit</code></td><td>Note under the task above it</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Start a new day</h2>
+    <p>Copy this block into the daily log — day heading at one tab, topic labels at two:</p>
+    <pre class="plan">	<span class="date">Wednesday 03-09-2026</span>
+	<span class="sep">=============================================</span>
+
+		<span class="lbl">Topic / Client</span>
+		<span class="sep">-----------------------------------------</span>
+		-
+			<span class="note">| </span></pre>
+  </section>
+
+  <section id="get">
+    <h2>Get it</h2>
+    <ul class="get">
+      <li><a href="https://github.com/gtekelis/planoptis">Repository &amp; full README</a> — the method, the vocabulary, editor setup</li>
+      <li><a href="https://github.com/gtekelis/planoptis/blob/main/Planoptis.sublime-syntax">Planoptis.sublime-syntax</a> — syntax highlighting for Sublime Text</li>
+      <li>
+        Demo plans:
+        <a href="https://github.com/gtekelis/planoptis/blob/main/planoptis-demo-en.txt">English</a>
+        · <a href="https://github.com/gtekelis/planoptis/blob/main/planoptis-demo-el.txt">Ελληνικά</a>
+        <span class="lang">(the format is language-agnostic)</span>
+      </li>
+    </ul>
+    <p>Free under the <a href="https://github.com/gtekelis/planoptis/blob/main/LICENSE">MIT license</a>.</p>
+  </section>
+
+  <footer>
+    © 2026 Giorgos Nikolaos Tekelis · <a href="https://github.com/gtekelis/planoptis/blob/main/LICENSE">MIT</a> · <a href="https://github.com/gtekelis/planoptis">github.com/gtekelis/planoptis</a>
+  </footer>
+
+</div>
+</body>
+</html>

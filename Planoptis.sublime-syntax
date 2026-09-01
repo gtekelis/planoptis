@@ -1,0 +1,92 @@
+%YAML 1.2
+---
+name: Planoptis
+file_extensions:
+  - planoptis
+scope: text.planoptis
+
+contexts:
+  main:
+    # Main Planoptis title
+    - match: '^PLANOPTIS(?:\s+—.*)?$'
+      scope: markup.heading.1.planoptis
+
+    # Major sections, e.g. 💻 PROJECTS / 🗒️ MONTHLY PLAN / 🗓️ SEPTEMBER
+    - match: '^\s*(?:💻|🗒️|🗓️)\s+.+$'
+      scope: markup.heading.1.planoptis
+
+    # Current month: 🟩 marks the month in focus — its name gets a distinct colour
+    - match: '^(\s*)(🟩\s+(?:JANUARY|FEBRUARY|MARCH|APRIL|MAY|JUNE|JULY|AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER|ΙΑΝΟΥΑΡΙΟΣ|ΦΕΒΡΟΥΑΡΙΟΣ|ΜΑΡΤΙΟΣ|ΑΠΡΙΛΙΟΣ|ΜΑΪΟΣ|ΙΟΥΝΙΟΣ|ΙΟΥΛΙΟΣ|ΑΥΓΟΥΣΤΟΣ|ΣΕΠΤΕΜΒΡΙΟΣ|ΟΚΤΩΒΡΙΟΣ|ΝΟΕΜΒΡΙΟΣ|ΔΕΚΕΜΒΡΙΟΣ))\s*$'
+      captures:
+        2: markup.inserted.planoptis
+
+    # Month headings
+    - match: '^\s*(?:JANUARY|FEBRUARY|MARCH|APRIL|MAY|JUNE|JULY|AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER|ΙΑΝΟΥΑΡΙΟΣ|ΦΕΒΡΟΥΑΡΙΟΣ|ΜΑΡΤΙΟΣ|ΑΠΡΙΛΙΟΣ|ΜΑΪΟΣ|ΙΟΥΝΙΟΣ|ΙΟΥΛΙΟΣ|ΑΥΓΟΥΣΤΟΣ|ΣΕΠΤΕΜΒΡΙΟΣ|ΟΚΤΩΒΡΙΟΣ|ΝΟΕΜΒΡΙΟΣ|ΔΕΚΕΜΒΡΙΟΣ)\s*$'
+      scope: markup.heading.2.planoptis
+
+    # Date headings
+    - match: '^\s*(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|Δευτέρα|Τρίτη|Τετάρτη|Πέμπτη|Παρασκευή|Σάββατο|Κυριακή)\s+\d{2}-\d{2}-\d{4}\s*$'
+      scope: constant.numeric.date.planoptis
+
+    # --- Task markers ----------------------------------------------------------
+    # Canonical form: "- <marker> text". The leading "- " is optional, and a
+    # stray "-" right after the marker is tolerated for older notes.
+
+    # Completed
+    - match: '^(\s*)(?:(-)\s+)?(✅)(?:\s*-\s*)?(.*)$'
+      captures:
+        2: punctuation.definition.list_item.planoptis
+        3: markup.inserted.planoptis
+        4: markup.inserted.planoptis
+
+    # Urgent
+    - match: '^(\s*)(?:(-)\s+)?(🆘)(?:\s*-\s*)?(.*)$'
+      captures:
+        2: punctuation.definition.list_item.planoptis
+        3: invalid.illegal.planoptis
+        4: invalid.illegal.planoptis
+
+    # Warning
+    - match: '^(\s*)(?:(-)\s+)?(⚠️?)(?:\s*-\s*)?(.*)$'
+      captures:
+        2: punctuation.definition.list_item.planoptis
+        3: markup.changed.planoptis
+        4: markup.changed.planoptis
+
+    # Next / pending
+    - match: '^(\s*)(?:(-)\s+)?(⏭️?|⏩)(?:\s*-\s*)?(.*)$'
+      captures:
+        2: punctuation.definition.list_item.planoptis
+        3: keyword.control.planoptis
+        4: keyword.control.planoptis
+
+    # Forward / hand-off
+    - match: '^(\s*)(?:(-)\s+)?(➡️?)(?:\s*-\s*)?(.*)$'
+      captures:
+        2: punctuation.definition.list_item.planoptis
+        3: keyword.operator.planoptis
+        4: keyword.operator.planoptis
+
+    # Notes / child details
+    - match: '^(\s*)(\|)(.*)$'
+      captures:
+        2: punctuation.definition.comment.planoptis
+        3: comment.line.planoptis
+
+    # Standard tasks
+    - match: '^(\s*)(-)(\s+.+)$'
+      captures:
+        2: punctuation.definition.list_item.planoptis
+        3: string.unquoted.planoptis
+
+    # Project / client / topic labels directly above dashed separators.
+    # Indented lines that don't start with a task symbol.
+    - match: '^\s{2,}[^\s✅⚠🆘\-\|=].+$'
+      scope: entity.name.section.planoptis
+
+    # Visual separators
+    - match: '^\s*=+\s*$'
+      scope: punctuation.separator.planoptis
+
+    - match: '^\s*-{5,}\s*$'
+      scope: punctuation.separator.planoptis

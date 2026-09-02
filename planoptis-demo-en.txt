@@ -75,40 +75,40 @@ PLANOPTIS — DEMO PLAN 🎯
 
 		Website
 		-----------------------------------------
-		- ✅ Create repository
-		- ✅ Build the basic homepage structure
-		- Responsive menu
-		- Contact form
-			| Validate before submit
-			| Show a confirmation message
-		- ⚠️ Check mobile layout
+			- ✅ Create repository
+			- ✅ Build the basic homepage structure
+			- Responsive menu
+			- Contact form
+				| Validate before submit
+				| Show a confirmation message
+			- ⚠️ Check mobile layout
 
 
 		Weekly Report
 		-----------------------------------------
-		- ✅ Collect required data
-		- Generate PDF report
-			| Check layout
-			| Add generation date
-		- Send automatically by email
-			| Send every Friday
-			| Keep a copy in the archive
+			- ✅ Collect required data
+			- Generate PDF report
+				| Check layout
+				| Add generation date
+			- Send automatically by email
+				| Send every Friday
+				| Keep a copy in the archive
 
 
 		Infrastructure
 		-----------------------------------------
-		- 🆘 Check available disk space
-		- Upgrade packages
-		- Restart services
-			| Check logs after restart
+			- 🆘 Check available disk space
+			- Upgrade packages
+			- Restart services
+				| Check logs after restart
 
 
 		Development
 		-----------------------------------------
-		- Add a new dashboard filter
-			| Filter by status
-			| Filter by date
-		- Refactor the export module
+			- Add a new dashboard filter
+				| Filter by status
+				| Filter by date
+			- Refactor the export module
 
 
 	Wednesday 02-09-2026
@@ -116,19 +116,19 @@ PLANOPTIS — DEMO PLAN 🎯
 
 		Client A
 		-----------------------------------------
-		- ✅ Send proposal
-		- Follow up for feedback
-		- ⏭️ Prepare demo
-			| Use sample data
-			| Run a final check before the presentation
+			- ✅ Send proposal
+			- Follow up for feedback
+			- ⏭️ Prepare demo
+				| Use sample data
+				| Run a final check before the presentation
 
 
 		Operations
 		-----------------------------------------
-		- ⏭️ Review outstanding payments
-			| Send a friendly reminder where needed
-		- ⚠️ Check domain expiration
-		- Database backup
+			- ⏭️ Review outstanding payments
+				| Send a friendly reminder where needed
+			- ⚠️ Check domain expiration
+			- Database backup
 
 
 	Thursday 03-09-2026
@@ -136,22 +136,22 @@ PLANOPTIS — DEMO PLAN 🎯
 
 		Internal Dashboard
 		-----------------------------------------
-		- ✅ Create base layout
-		- KPIs on the homepage
-			| Active users
-			| Monthly revenue
-			| Open tasks
-		- Notifications panel
-		- Export to CSV
+			- ✅ Create base layout
+			- KPIs on the homepage
+				| Active users
+				| Monthly revenue
+				| Open tasks
+			- Notifications panel
+			- Export to CSV
 
 
 		Content
 		-----------------------------------------
-		- Draft a new article
-			| Title
-			| Intro
-			| 3 main sections
-		- Create cover image
+			- Draft a new article
+				| Title
+				| Intro
+				| 3 main sections
+			- Create cover image
 
 
 	Friday 04-09-2026
@@ -159,11 +159,11 @@ PLANOPTIS — DEMO PLAN 🎯
 
 		Planning
 		-----------------------------------------
-		- ✅ Weekly review
-		- Move unfinished tasks to next week
-		- Capture new ideas
-			| Idea A
-			| Idea B
-		- Set priorities for Monday
+			- ✅ Weekly review
+			- Move unfinished tasks to next week
+			- Capture new ideas
+				| Idea A
+				| Idea B
+			- Set priorities for Monday
 
 

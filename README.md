@@ -31,7 +31,8 @@ A plan has three top-level sections, each opened by an icon heading:
 | Daily log | `🗓️ SEPTEMBER` | One block per month, then one block per day, then the work. |
 
 Inside the daily log, each day is grouped by **topic / client**: a label line
-followed by a `-----` rule, then the tasks for that topic.
+followed by a `-----` rule, then the tasks for that topic — indented one level
+below the label, so the whole topic folds shut.
 
 ```
 🗓️ SEPTEMBER
@@ -43,10 +44,10 @@ followed by a `-----` rule, then the tasks for that topic.
 
 		Website
 		-----------------------------------------
-		- ✅ Create repository
-		- Responsive menu
-		- Contact form
-			| Validate before submit
+			- ✅ Create repository
+			- Responsive menu
+			- Contact form
+				| Validate before submit
 ```
 
 ---
@@ -118,7 +119,7 @@ Markers always come **immediately after the `-`**, one per line:
 ## New-day template
 
 Copy this block to start a new day in the daily log — day heading at one tab,
-topic labels at two:
+topic labels at two, tasks at three:
 
 ```
 	Wednesday 03-09-2026
@@ -126,8 +127,8 @@ topic labels at two:
 
 		Topic / Client
 		-----------------------------------------
-		- 
-			| 
+			- 
+				| 
 ```
 
 Rename the day, add one topic label per client or area, then list the tasks

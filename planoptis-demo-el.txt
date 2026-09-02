@@ -75,40 +75,40 @@ PLANOPTIS — DEMO PLAN 🎯
 
 		Website
 		-----------------------------------------
-		- ✅ Δημιουργία repository
-		- ✅ Βασική δομή αρχικής σελίδας
-		- Responsive menu
-		- Contact form
-			| Να γίνει validation πριν το submit
-			| Να εμφανίζεται confirmation message
-		- ⚠️ Έλεγχος mobile layout
+			- ✅ Δημιουργία repository
+			- ✅ Βασική δομή αρχικής σελίδας
+			- Responsive menu
+			- Contact form
+				| Να γίνει validation πριν το submit
+				| Να εμφανίζεται confirmation message
+			- ⚠️ Έλεγχος mobile layout
 
 
 		Weekly Report
 		-----------------------------------------
-		- ✅ Συλλογή των απαραίτητων δεδομένων
-		- Δημιουργία PDF report
-			| Έλεγχος layout
-			| Προσθήκη ημερομηνίας δημιουργίας
-		- Αυτόματη αποστολή email
-			| Αποστολή κάθε Παρασκευή
-			| Να κρατιέται αντίγραφο στο archive
+			- ✅ Συλλογή των απαραίτητων δεδομένων
+			- Δημιουργία PDF report
+				| Έλεγχος layout
+				| Προσθήκη ημερομηνίας δημιουργίας
+			- Αυτόματη αποστολή email
+				| Αποστολή κάθε Παρασκευή
+				| Να κρατιέται αντίγραφο στο archive
 
 
 		Infrastructure
 		-----------------------------------------
-		- 🆘 Έλεγχος διαθέσιμου disk space
-		- Upgrade packages
-		- Restart services
-			| Έλεγχος logs μετά το restart
+			- 🆘 Έλεγχος διαθέσιμου disk space
+			- Upgrade packages
+			- Restart services
+				| Έλεγχος logs μετά το restart
 
 
 		Development
 		-----------------------------------------
-		- Προσθήκη νέου filter στο dashboard
-			| Filter ανά status
-			| Filter ανά ημερομηνία
-		- Refactor του export module
+			- Προσθήκη νέου filter στο dashboard
+				| Filter ανά status
+				| Filter ανά ημερομηνία
+			- Refactor του export module
 
 
 	Wednesday 02-09-2026
@@ -116,19 +116,19 @@ PLANOPTIS — DEMO PLAN 🎯
 
 		Client A
 		-----------------------------------------
-		- ✅ Αποστολή προσφοράς
-		- Follow-up για feedback
-		- ⏭️ Προετοιμασία demo
-			| Χρήση sample data
-			| Έλεγχος πριν την παρουσίαση
+			- ✅ Αποστολή προσφοράς
+			- Follow-up για feedback
+			- ⏭️ Προετοιμασία demo
+				| Χρήση sample data
+				| Έλεγχος πριν την παρουσίαση
 
 
 		Operations
 		-----------------------------------------
-		- ⏭️ Έλεγχος εκκρεμών πληρωμών
-			| Αποστολή ευγενικού reminder όπου χρειάζεται
-		- ⚠️ Έλεγχος λήξης domain
-		- Backup βάσης δεδομένων
+			- ⏭️ Έλεγχος εκκρεμών πληρωμών
+				| Αποστολή ευγενικού reminder όπου χρειάζεται
+			- ⚠️ Έλεγχος λήξης domain
+			- Backup βάσης δεδομένων
 
 
 	Thursday 03-09-2026
@@ -136,22 +136,22 @@ PLANOPTIS — DEMO PLAN 🎯
 
 		Internal Dashboard
 		-----------------------------------------
-		- ✅ Δημιουργία βασικού layout
-		- KPIs στην αρχική
-			| Active users
-			| Monthly revenue
-			| Open tasks
-		- Notifications panel
-		- Export σε CSV
+			- ✅ Δημιουργία βασικού layout
+			- KPIs στην αρχική
+				| Active users
+				| Monthly revenue
+				| Open tasks
+			- Notifications panel
+			- Export σε CSV
 
 
 		Content
 		-----------------------------------------
-		- Draft για νέο άρθρο
-			| Τίτλος
-			| Intro
-			| 3 βασικές ενότητες
-		- Δημιουργία cover image
+			- Draft για νέο άρθρο
+				| Τίτλος
+				| Intro
+				| 3 βασικές ενότητες
+			- Δημιουργία cover image
 
 
 	Friday 04-09-2026
@@ -159,11 +159,11 @@ PLANOPTIS — DEMO PLAN 🎯
 
 		Planning
 		-----------------------------------------
-		- ✅ Review εβδομάδας
-		- Μεταφορά όσων δεν ολοκληρώθηκαν στην επόμενη εβδομάδα
-		- Καταγραφή νέων ιδεών
-			| Idea A
-			| Idea B
-		- Προτεραιότητες για Δευτέρα
+			- ✅ Review εβδομάδας
+			- Μεταφορά όσων δεν ολοκληρώθηκαν στην επόμενη εβδομάδα
+			- Καταγραφή νέων ιδεών
+				| Idea A
+				| Idea B
+			- Προτεραιότητες για Δευτέρα
 
 

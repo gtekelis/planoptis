@@ -177,6 +177,11 @@ don't turn *every* text file into a plan.
 **4. Fold.** Use the triangles in the gutter, or *Edit → Code Folding*
 (*Fold All* / *Unfold All*, and *Fold Level 1–9*).
 
+> The colours in the screenshot and the vocabulary table are how Sublime's
+> default **Mariana** colour scheme renders these scopes. Any other colour
+> scheme maps the same scopes to its own palette — the highlighting still
+> works, only the specific colours change.
+
 ### Other editors
 
 There's no grammar bundled yet, but the format is designed to degrade

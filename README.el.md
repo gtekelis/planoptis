@@ -181,6 +181,11 @@ extension as… → Planoptis*. Από εκεί και πέρα κάθε αρχ�
 **4. Folding.** Με τα τριγωνάκια του gutter, ή από *Edit → Code Folding*
 (*Fold All* / *Unfold All*, και *Fold Level 1–9*).
 
+> Τα χρώματα στο screenshot και στον πίνακα λεξιλογίου είναι όπως τα αποδίδει το
+> προεπιλεγμένο color scheme **Mariana** του Sublime. Οποιοδήποτε άλλο color
+> scheme αντιστοιχίζει τα ίδια scopes στη δική του παλέτα — το highlighting
+> δουλεύει το ίδιο, αλλάζουν μόνο τα συγκεκριμένα χρώματα.
+
 ### Άλλοι editors
 
 Δεν υπάρχει ακόμα έτοιμο grammar, αλλά το format έχει σχεδιαστεί να υποβαθμίζεται
